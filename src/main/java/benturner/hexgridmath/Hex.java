@@ -1,7 +1,8 @@
 package benturner.hexgridmath;
 
 /**
- * Created by bturner on 4/2/2017.
+ * Data structure representing a single Hex. Its location on the grid is stored using a cube coordinate system.
+ * Conversion methods are available to change from cube coordinates to offset (square) coordiantes.
  */
 
 public class Hex {
@@ -65,5 +66,32 @@ public class Hex {
             return this.getQ() == other.getQ() && this.getR() == other.getR();
         }
         return false;
+    }
+
+    /**
+     * Adds the given Hex to this one and returns the result.
+     * @param toAdd A Hex
+     * @return The Hex that results from adding toAdd to this Hex.
+     */
+    public Hex addHex(Hex toAdd) {
+        return new Hex(this.getQ() + toAdd.getQ(), this.getR() + toAdd.getR(), this.getS() + toAdd.getS());
+    }
+
+    /**
+     * Subtracts the given Hex from this one and returns the result.
+     * @param toSubtract A Hex
+     * @return The Hex that results from subtracting toSubtract from this Hex.
+     */
+    public Hex subtractHex(Hex toSubtract) {
+        return new Hex(this.getQ() - toSubtract.getQ(), this.getR() - toSubtract.getR(), this.getS() - toSubtract.getS());
+    }
+
+    /**
+     * Multiplies the given Hex by a given factor and returns the result.
+     * @param factor How much to multiply the Hex's coordinates by
+     * @return The Hex that results from multiplying factor with this Hex.
+     */
+    public Hex hexMultiply(int factor) {
+        return new Hex(this.getQ() * factor, this.getR() * factor, this.getS() * factor);
     }
 }
